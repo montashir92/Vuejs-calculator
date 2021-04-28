@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue Js</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
+</head>
+<body>
+
+<div id="app">
+	
+	<div class="container mt-4">
+		
+		<h2>Simple Vue Calculator</h2>
+
+		<div class="card">
+			<div class="card-body">
+
+				<div class="alert alert-danger" v-if="hasError">
+					{{ error }}
+				</div>
+
+				<div class="alert alert-success" v-else>
+					Result =  {{ resultText }}
+				</div>
+
+				<div class="row">
+
+					<div class="col-md-6">
+						<input type="text" @keyup="checkError" class="form-control" v-model="first_number">
+					</div>
+
+					<div class="col-md-6">
+						<input type="text" @keyup="checkError" class="form-control" v-model="second_number">
+					</div>
+				</div>
+
+				<div class="row mt-3">
+					<div class="col-md-3">
+						<button class="btn btn-success btn-block" @click="plushButton" type="button">+</button>
+					</div>
+
+					<div class="col-md-3">
+						<button class="btn btn-success btn-block" @click="subButton" type="button">-</button>
+					</div>
+
+					<div class="col-md-3">
+						<button class="btn btn-success btn-block" @click="mulButton" type="button">*</button>
+					</div>
+
+					<div class="col-md-3">
+						<button class="btn btn-success btn-block" @click="divButton" type="button">/</button>
+					</div>
+	
+				</div>
+
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+
+<script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+
+<script type="text/javascript">
+
+	var app = new Vue({
+		el : "#app",
+		data : {
+			first_number : "",
+			second_number : "",
+			hasError : false,
+			error : "",
+			resultText : ""
+		},
+
+		methods: {
+
+			plushButton(){
+				
+				var first = Number(this.first_number)
+				var second = Number(this.second_number)
+				var result = first + second;
+				this.resultText = result;
+				
+			},
+
+			subButton(){
+				
+				var first = Number(this.first_number)
+				var second = Number(this.second_number)
+				var result = first - second;
+				this.resultText = result;
+				
+			},
+
+			mulButton(){
+				
+				var first = Number(this.first_number)
+				var second = Number(this.second_number)
+				var result = first * second;
+				this.resultText = result;
+				
+			},
+
+			divButton(){
+				
+				var first = Number(this.first_number)
+				var second = Number(this.second_number)
+				var result = first / second;
+				this.resultText = result;
+				
+			},
+
+			checkError(){
+				if (isNaN(this.first_number)) {
+					this.hasError = true
+					this.error = "Please Enter a Valid Number"
+				}else if(isNaN(this.second_number)) {
+					this.hasError = true
+					this.error = "Please Enter a Valid Number"
+				}else {
+					this.hasError = false
+					this.error = "" 
+				}
+
+			}
+		}
+
+	});
+
+
+</script>
+
+</body>
+</html>
